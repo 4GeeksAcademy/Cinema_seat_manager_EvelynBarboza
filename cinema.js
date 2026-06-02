@@ -1,13 +1,35 @@
+/*type Sala = number [][];
+
+function IniciarMatrizAsientos (): Sala {
+
+    const fila = 8;
+    const colum = 10;
+    const sala: Sala = [];
+
+for (let i = 0; i< fila; i++){
+    sala[i] = [];
+
+    for (let x = 0; x < colum; x++) {
+        sala[i][x] = 0;
+    }
+}
+return AsientosCine;
+
+}*/
+/////////////////* CREAR SALA*//////////////////
 function crearSala() {
     var sala = [];
-    for (var fila = 0; fila < 8; fila++) {
-        sala[fila] = [];
-        for (var columna = 0; columna < 10; columna++) {
-            sala[fila][columna] = 0;
+    var columna = 10;
+    var fila = 8;
+    for (var i = 0; i < fila; i++) {
+        sala[i] = [];
+        for (var j = 0; j < columna; j++) {
+            sala[i][j] = 0;
         }
     }
     return sala;
 }
+//////////////////*MOSTRAR SALA*///////////////
 function mostrarSala(sala) {
     for (var _i = 0, sala_1 = sala; _i < sala_1.length; _i++) {
         var fila = sala_1[_i];
@@ -19,7 +41,7 @@ function mostrarSala(sala) {
         console.log(linea);
     }
 }
-//console.log(mostrarSala(sala))
+////////////////*RESERVAR ASIENTOS*///////////////
 function reservarAsiento(sala, fila, columna) {
     var arrayFila = fila - 1;
     var arrayColumna = columna - 1;
@@ -32,12 +54,7 @@ function reservarAsiento(sala, fila, columna) {
     sala[arrayFila][arrayColumna] = 1;
     return "\u00C9xito: Asiento fila ".concat(fila, ", columna ").concat(columna, " reservado correctamente.");
 }
-//console.log(reservarAsiento(sala,2,3))
-var sala = crearSala();
-mostrarSala(sala);
-//console.log(reservarAsiento(sala, 2, 3)); //////Éxito: Asiento fila 2, columna 3 reservado correctamente.
-console.log(reservarAsiento(sala, 2, 10));
-//mostrarSala(sala);
+////////*CONTAR CANTIDAD DE ASIENTOS*////////
 function contarAsientos(sala) {
     var ocupado = 0;
     var libre = 0;
@@ -49,7 +66,28 @@ function contarAsientos(sala) {
                 libre++;
         }
     }
-    return "{\"occupied\": ".concat(ocupado, ", \"available\": ").concat(libre, ", \"total\": ").concat(ocupado + libre, "}");
+    return "{\"Ocupados\": ".concat(ocupado, ", \"Libres\": ").concat(libre, ", \"Total\": ").concat(ocupado + libre, "}");
 }
+/////*PARA ENCONTRAR 2 ASIENTOS LIBRES JUNTOS*/////
+function encontrarDosAsientosJuntos(asientos) {
+    for (var i = 0; i < asientos.length; i++) {
+        for (var j = 0; j < asientos[i].length - 1; j++) {
+            if (asientos[i][j] === 0 && asientos[i][j + 1] === 0) {
+                return "{\"Encontrados\": true, \"Fila\": ".concat(i + 1, ", \"Columna 1\": ").concat(j + 1, ", \"Columna 2\": ").concat(j + 2, ", \"Mensaje\": \" Se encontraron 2 asientos juntos en la fila ").concat(i + 1, ", Columnas ").concat(j + 1, " y ").concat(j + 2, "\"}");
+            }
+        }
+    }
+    return "{\"Encontrados\": false, \"Mensaje\": \"No hay dos asientos juntos disponibles en la sala.\"}";
+}
+/*PRUEBAS DE CONSOLA*/
+var sala = crearSala();
+console.log('- SALA RECIÉN CREADA -');
+console.log(mostrarSala(sala));
 console.log(contarAsientos(sala));
+console.log(encontrarDosAsientosJuntos(sala));
+console.log('- RESERVA DE ASIENTOS -');
 console.log(reservarAsiento(sala, 2, 10));
+console.log(reservarAsiento(sala, 2, 3)); //////Éxito: Asiento fila 2, columna 3 reservado correctamente.
+console.log(reservarAsiento(sala, 7, 8));
+//asiento ocupado ?
+console.log(reservarAsiento(sala, 2, 3));
