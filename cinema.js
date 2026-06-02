@@ -37,4 +37,19 @@ var sala = crearSala();
 mostrarSala(sala);
 //console.log(reservarAsiento(sala, 2, 3)); //////Éxito: Asiento fila 2, columna 3 reservado correctamente.
 console.log(reservarAsiento(sala, 2, 10));
-mostrarSala(sala);
+//mostrarSala(sala);
+function contarAsientos(sala) {
+    var ocupado = 0;
+    var libre = 0;
+    for (var i = 0; i < sala.length; i++) {
+        for (var j = 0; j < sala[i].length; j++) {
+            if (sala[i][j] === 1)
+                ocupado++;
+            else
+                libre++;
+        }
+    }
+    return "{\"occupied\": ".concat(ocupado, ", \"available\": ").concat(libre, ", \"total\": ").concat(ocupado + libre, "}");
+}
+console.log(contarAsientos(sala));
+console.log(reservarAsiento(sala, 2, 10));
