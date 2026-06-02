@@ -1,4 +1,4 @@
-type AsientosCine = number [][]; 
+/*type AsientosCine = number [][]; 
 
 function IniciarMatrizAsientos (): AsientosCine {
 
@@ -15,5 +15,21 @@ for (let i = 0; i< fila; i++){
 }
 return AsientosCine;
 
+}*/
+//console.log(IniciarMatrizAsientos())
+type Sala = number[][];
+
+function crearSala(): Sala {
+  const sala: Sala = [];
+
+  for (let fila = 0; fila < 8; fila++) {
+    sala[fila] = [];
+
+    for (let columna = 0; columna < 10; columna++) {
+      sala[fila][columna] = 0;
+    }
+  }
+
+  return sala;
 }
-console.log(IniciarMatrizAsientos())
+
