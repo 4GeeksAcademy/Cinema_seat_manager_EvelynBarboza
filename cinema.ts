@@ -33,3 +33,18 @@ function crearSala(): Sala {
   return sala;
 }
 
+const sala = crearSala()
+
+function mostrarSala(sala: number[][]): void {
+  for (const fila of sala) {
+    let linea = "";
+
+    for (const asiento of fila) {
+      linea += asiento === 1 ? "X " : "L ";
+    }
+
+    console.log(linea);
+  }
+}
+
+console.log(mostrarSala(sala))
