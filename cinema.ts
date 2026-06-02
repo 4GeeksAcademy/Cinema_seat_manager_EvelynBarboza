@@ -33,8 +33,6 @@ function crearSala(): Sala {
   return sala;
 }
 
-const sala = crearSala()
-
 function mostrarSala(sala: number[][]): void {
   for (const fila of sala) {
     let linea = "";
@@ -47,4 +45,28 @@ function mostrarSala(sala: number[][]): void {
   }
 }
 
-console.log(mostrarSala(sala))
+//console.log(mostrarSala(sala))
+
+function reservarAsiento(sala: Sala, fila: number, columna: number): string{
+    const arrayFila = fila-1
+    const arrayColumna = columna -1
+
+    if (fila < 1 || fila > 8 || columna < 1 || columna > 10) {
+    return `Error: Posición inválida. Fila debe estar entre 1-8 y columna 1-10.`;
+  }
+
+  if (sala[arrayFila][arrayColumna] === 1) {
+    return `Error: El asiento en la fila ${fila}, columna ${columna} ya está ocupado.`;
+  }
+
+  sala[arrayFila][arrayColumna] = 1;
+  return `Éxito: Asiento fila ${fila}, columna ${columna} reservado correctamente.`;
+}
+//console.log(reservarAsiento(sala,2,3))
+const sala = crearSala();
+
+mostrarSala(sala);
+
+//console.log(reservarAsiento(sala, 2, 3)); //////Éxito: Asiento fila 2, columna 3 reservado correctamente.
+console.log(reservarAsiento(sala, 2, 10));
+mostrarSala(sala);
